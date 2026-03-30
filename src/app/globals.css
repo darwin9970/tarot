@@ -1,26 +1,102 @@
 @import "tailwindcss";
+@import "@fontsource/cormorant-garamond/400.css";
+@import "@fontsource/cormorant-garamond/500.css";
+@import "@fontsource/cormorant-garamond/600.css";
+@import "@fontsource/cormorant-garamond/700.css";
+@import "@fontsource-variable/noto-sans-sc";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #06070b;
+  --surface: #0e1324;
+  --surface-strong: #111a31;
+  --foreground: #f3f5fb;
+  --muted: #b7c2e0;
+  --accent-gold: #c9a96a;
+  --accent-silver: #9fb5d9;
+  --accent-purple: #5b4d8d;
+  --accent-red: #6e294b;
+  --ring: rgba(201, 169, 106, 0.55);
+  --font-display: "Cormorant Garamond";
+  --font-body: "Noto Sans SC Variable";
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-surface: var(--surface);
+  --color-surface-strong: var(--surface-strong);
+  --color-muted: var(--muted);
+  --color-accent-gold: var(--accent-gold);
+  --color-accent-silver: var(--accent-silver);
+  --color-accent-purple: var(--accent-purple);
+  --color-accent-red: var(--accent-red);
+  --color-ring: var(--ring);
+  --font-sans: var(--font-body);
+  --font-serif: var(--font-display);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+@layer base {
+  * {
+    border-color: rgba(255, 255, 255, 0.08);
+  }
+
+  html {
+    color-scheme: dark;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    min-height: 100vh;
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-body), sans-serif;
+    text-rendering: optimizeLegibility;
+    background-image:
+      radial-gradient(circle at top, rgba(159, 181, 217, 0.08), transparent 22%),
+      radial-gradient(circle at 80% 18%, rgba(91, 77, 141, 0.16), transparent 22%),
+      linear-gradient(180deg, rgba(6, 7, 11, 0.95), rgba(5, 7, 16, 1));
+  }
+
+  ::selection {
+    background-color: rgba(201, 169, 106, 0.28);
+    color: white;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+@layer components {
+  .noise-overlay {
+    background-image:
+      radial-gradient(circle at 20% 20%, rgba(255, 255, 255, 0.03) 0, transparent 28%),
+      radial-gradient(circle at 80% 10%, rgba(255, 255, 255, 0.02) 0, transparent 24%),
+      radial-gradient(circle at 40% 80%, rgba(255, 255, 255, 0.025) 0, transparent 20%);
+    background-size: 180px 180px, 220px 220px, 160px 160px;
+    mix-blend-mode: screen;
+  }
+
+  .panel-luminous {
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background:
+      linear-gradient(180deg, rgba(255, 255, 255, 0.08), rgba(255, 255, 255, 0.03));
+    box-shadow: 0 24px 80px rgba(5, 8, 20, 0.42);
+    backdrop-filter: blur(24px);
+  }
+
+  .text-shimmer {
+    background: linear-gradient(120deg, #f9f1da 0%, #c9a96a 45%, #f8f5eb 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+
+  .card-glow {
+    box-shadow:
+      inset 0 0 0 1px rgba(255, 255, 255, 0.08),
+      0 18px 60px rgba(5, 8, 20, 0.42),
+      0 0 36px rgba(201, 169, 106, 0.08);
+  }
 }
